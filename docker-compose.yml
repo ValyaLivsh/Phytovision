@@ -1,0 +1,29 @@
+# Запуск базы данных (и, при необходимости, API):
+#   docker compose up -d db          # только PostgreSQL со схемой и данными
+#   docker compose up --build        # база + API на http://localhost:8000/docs
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: pv
+      POSTGRES_PASSWORD: pv
+      POSTGRES_DB: phytovision
+    ports: ["5432:5432"]
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pv -d phytovision"]
+      interval: 5s
+      retries: 10
+  api:
+    build: .
+    environment:
+      PV_DB_DSN: postgresql://pv:pv@db:5432/phytovision
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  pgdata:

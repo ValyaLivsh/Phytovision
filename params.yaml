@@ -1,0 +1,29 @@
+data:
+  raw_dir: data/raw
+  manifest: data/processed/manifest.csv
+  classes: data/processed/classes.json
+  val_size: 0.15
+  test_size: 0.15
+  seed: 42
+  min_images_per_class: 10
+model:
+  backbone: efficientnet_v2_s
+  image_size: 300
+  dropout: 0.3
+train:
+  epochs_head: 3
+  epochs_finetune: 25
+  batch_size: 32
+  lr_head: 0.001
+  lr_backbone: 0.0001
+  weight_decay: 0.05
+  label_smoothing: 0.1
+  mixup_alpha: 0.2
+  cutmix_alpha: 1.0
+  mix_prob: 0.5
+  patience: 6
+  num_workers: 2
+  seed: 42
+infer:
+  top_k: 3
+  confidence_threshold: 0.5

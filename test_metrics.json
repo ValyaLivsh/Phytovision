@@ -1,0 +1,13 @@
+{
+  "test_top1": 0.8604444444444445,
+  "test_top3": 0.9457777777777778,
+  "macro_f1": 0.8611631240831347,
+  "genus_top1": 0.8977777777777778,
+  "confidence_threshold": 0.5,
+  "genus_answer_share": 0.11377777777777776,
+  "policy_accuracy": 0.8693333333333333,
+  "n_test": 1125,
+  "n_classes": 50,
+  "meets_tz_top1_gt_0.85": true,
+  "meets_tz_top3_gt_0.95": false
+}

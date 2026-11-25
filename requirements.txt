@@ -1,0 +1,17 @@
+torch>=2.2
+torchvision>=0.17
+numpy
+pillow
+pandas
+scikit-learn
+pyyaml
+tqdm
+onnx
+onnxruntime
+fastapi
+uvicorn[standard]
+python-multipart
+dvc>=3.0
+pytest
+requests
+psycopg[binary]>=3.1
